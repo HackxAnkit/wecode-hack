@@ -27,7 +27,7 @@ Room{id=3, name='Executive Room', seatingCapacity=5}
 Room{id=4, name='Andromeda', seatingCapacity=26}
 
 ---- Manager Menu ----
-1. View All Rooms
+1. View All Room
 2. View All Amenities
 3. Book Meeting with Default Room
 4. Book Meeting with Custom Room
