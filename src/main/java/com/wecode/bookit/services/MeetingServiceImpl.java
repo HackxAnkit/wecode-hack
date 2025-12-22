@@ -1,6 +1,5 @@
 package com.wecode.bookit.services;
 
-import com.hsbc.bookit.dao.*;
 import com.wecode.bookit.dao.*;
 import com.wecode.bookit.domain.Meetings;
 import com.wecode.bookit.domain.Rooms;
