@@ -1,8 +1,9 @@
 # wecode-hack
 # BookIt
 
-🤖 Automated meeting room booking system: 
-Problem Scope :
+# 🤖 Automated meeting room booking system: 
+
+<h1>Problem Scope :</h1>
 The system automates the procedure of booking a meeting room in a company. Employees can search and book a meeting room based on their requirements
 
 <h1>Description</h1>
