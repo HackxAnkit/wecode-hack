@@ -15,6 +15,7 @@ public class UserDto {
     private UUID userId;
     private String name;
     private String email;
+    private String passwordHash;
     private UserRole role;
     private Integer credits;
     private LocalDateTime createdAt;

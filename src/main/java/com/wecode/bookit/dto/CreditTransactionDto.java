@@ -12,9 +12,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreditTransactionDto {
+
     private UUID transactionId;
-    private UUID userId;
-    private UUID bookingId;
+    private UserDto user;
+    private BookingDto booking;
     private Integer amount;
     private TransactionType transactionType;
     private String description;

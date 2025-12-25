@@ -14,8 +14,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class BookingDto {
     private UUID bookingId;
-    private UUID roomId;
-    private UUID userId;
+    private MeetingRoomDto room;
+    private UserDto user;
     private String meetingTitle;
     private MeetingType meetingType;
     private LocalDateTime startTime;

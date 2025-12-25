@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -17,8 +18,8 @@ import java.util.UUID;
 public class CreditTransaction {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "transaction_id", columnDefinition = "UUID")
+    @UuidGenerator
+    @Column(name = "transaction_id")
     private UUID transactionId;
 
     @ManyToOne(fetch = FetchType.LAZY)
