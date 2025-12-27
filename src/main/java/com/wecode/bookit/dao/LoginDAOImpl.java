@@ -15,13 +15,13 @@ public class LoginDAOImpl implements LoginDAO {
     @Override
     //this method checks the database for an existing username and password entered at the time of login
     //if the username and password is correct it will create a user object and send it to the login service.
-    public Users authenticate(String username, String password) {
+    public Users authenticate(String email, String password) {
         Users user = null;
         try {
             Connection con = ConManager.getConnection();
             String sql = "SELECT * FROM Users WHERE username = ? AND password = ?";
             PreparedStatement statement = con.prepareStatement(sql);
-            statement.setString(1, username);
+            statement.setString(1, email);
             statement.setString(2, password);
 
             ResultSet rs = statement.executeQuery();
