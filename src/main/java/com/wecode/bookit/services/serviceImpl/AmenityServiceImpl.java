@@ -1,68 +1,82 @@
 package com.wecode.bookit.services.serviceImpl;
 
-import com.wecode.bookit.dao.AmenityDAO;
-import com.wecode.bookit.dao.AmenityDAOImpl;
-import com.wecode.bookit.model.Amenities;
-import com.wecode.bookit.model.Users;
-import com.wecode.bookit.exceptions.AmenitiesNotFoundException;
+import com.wecode.bookit.dto.CreateAmenityDto;
+import com.wecode.bookit.dto.UpdateAmenityDto;
+import com.wecode.bookit.entity.Amenity;
+import com.wecode.bookit.repository.AmenityRepository;
 import com.wecode.bookit.services.AmenityService;
+import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.UUID;
 
+@Service
 public class AmenityServiceImpl implements AmenityService {
 
+    private final AmenityRepository amenityRepository;
 
-    private final AmenityDAO amenityDAO = new AmenityDAOImpl();
-    private Users authenticatedUser;
-
-    //add an amenity
-    public void addAmenity(String name, int cost) {
-        Amenities amenity = new Amenities(name, cost);
-        amenityDAO.addAmenity(amenity);
-        System.out.println("Amenity added: " + name);
+    public AmenityServiceImpl(AmenityRepository amenityRepository) {
+        this.amenityRepository = amenityRepository;
     }
 
-    //update amenity
-    public void updateAmenity(int amenityId, String name, int cost) {
-        amenityDAO.updateAmenity(amenityId, name, cost);
-        System.out.println("Amenity updated: " + name);
-    }
-
-    //delete an amenity based on its id
-    public void deleteAmenity(int amenityId) {
-        amenityDAO.deleteAmenity(amenityId);
-        System.out.println("Amenity deleted: " + amenityId);
-    }
-
-    //view all amenities
-    public List<Amenities> viewAllAmenities() {
-        return amenityDAO.getAllAmenities();
-    }
-
-    //uses selected amenities to calculate the cost of the meeting and display it to the user
-    public int chooseAmenitiesAndCalculateCredits(List<String> selectedAmenities) {
-        // Get available amenities
-        List<Amenities> availableAmenities = amenityDAO.getAllAmenities();
-        System.out.println("Available amenities:");
-        // Create a set of available amenity names for quick lookup
-        Set<String> availableAmenityNames = new HashSet<>();
-        for (Amenities amenity : availableAmenities) {
-            availableAmenityNames.add(amenity.getName());
-            System.out.println(amenity.getName() + " - " + amenity.getCost() + " credits");
+    @Override
+    public Amenity createAmenity(CreateAmenityDto createAmenityDto) {
+        if (amenityRepository.existsByAmenityName(createAmenityDto.getAmenityName())) {
+            throw new RuntimeException("Amenity name already exists");
         }
 
-        // Validate selected amenities
-        for (String selectedAmenity : selectedAmenities) {
-            if (!availableAmenityNames.contains(selectedAmenity)) {
-                throw new AmenitiesNotFoundException("Amenity not found: " + selectedAmenity);
+        Amenity amenity = new Amenity();
+        amenity.setAmenityId(UUID.randomUUID());
+        amenity.setAmenityName(createAmenityDto.getAmenityName());
+        amenity.setCreditCost(createAmenityDto.getCreditCost());
+        amenity.setIsActive(true);
+
+        return amenityRepository.save(amenity);
+    }
+
+    @Override
+    public Amenity updateAmenity(UpdateAmenityDto updateAmenityDto) {
+        Amenity amenity = amenityRepository.findById(updateAmenityDto.getAmenityId())
+                .orElseThrow(() -> new RuntimeException("Amenity not found"));
+
+        if (updateAmenityDto.getAmenityName() != null && !updateAmenityDto.getAmenityName().isEmpty()
+                && !updateAmenityDto.getAmenityName().equals(amenity.getAmenityName())) {
+            if (amenityRepository.existsByAmenityName(updateAmenityDto.getAmenityName())) {
+                throw new RuntimeException("Amenity name already exists");
             }
+            amenity.setAmenityName(updateAmenityDto.getAmenityName());
         }
 
-        // Calculate total credits
-        int totalCredits = amenityDAO.selectAmenitiesAndCalculateCredits(selectedAmenities);
-        System.out.println("Total credits for selected amenities: " + totalCredits);
-        return totalCredits;
+        // Update credit cost if provided
+        if (updateAmenityDto.getCreditCost() != null) {
+            amenity.setCreditCost(updateAmenityDto.getCreditCost());
+        }
+
+        // Update active status if provided
+        if (updateAmenityDto.getIsActive() != null) {
+            amenity.setIsActive(updateAmenityDto.getIsActive());
+        }
+
+        return amenityRepository.save(amenity);
+    }
+
+    @Override
+    public Amenity getAmenityById(UUID amenityId) {
+        return amenityRepository.findById(amenityId)
+                .orElseThrow(() -> new RuntimeException("Amenity not found"));
+    }
+
+    @Override
+    public List<Amenity> getAllAmenities() {
+        return amenityRepository.findAll();
+    }
+
+    @Override
+    public void deleteAmenity(UUID amenityId) {
+        Amenity amenity = amenityRepository.findById(amenityId)
+                .orElseThrow(() -> new RuntimeException("Amenity not found"));
+        amenity.setIsActive(false);
+        amenityRepository.save(amenity);
     }
 }
+
