@@ -49,6 +49,31 @@ public class UserValidator {
     }
 
     /**
+     * Validates UserDto for login
+     * @param userDto the user data transfer object
+     * @return validation result
+     */
+    public ValidationResult validateLoginRequest(UserDto userDto) {
+        if (userDto == null) {
+            return new ValidationResult(false, "User data is required");
+        }
+
+        if (userDto.getEmail() == null || userDto.getEmail().trim().isEmpty()) {
+            return new ValidationResult(false, "Email is required");
+        }
+
+        if (!isValidEmail(userDto.getEmail())) {
+            return new ValidationResult(false, "Email format is invalid");
+        }
+
+        if (userDto.getPassword() == null || userDto.getPassword().isEmpty()) {
+            return new ValidationResult(false, "Password is required");
+        }
+
+        return new ValidationResult(true, "Validation successful");
+    }
+
+    /**
      * Validates email format using a simple regex
      * @param email the email to validate
      * @return true if email is valid, false otherwise
