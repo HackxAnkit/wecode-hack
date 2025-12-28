@@ -7,7 +7,7 @@ import com.wecode.bookit.dto.UpdateAmenityDto;
 import com.wecode.bookit.dto.UpdateMeetingRoomDto;
 import com.wecode.bookit.entity.Amenity;
 import com.wecode.bookit.services.AmenityService;
-import com.wecode.bookit.services.RoomService;
+import com.wecode.bookit.services.MeetingRoomService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,43 +20,41 @@ import java.util.UUID;
 @CrossOrigin(origins = "*")
 public class AdminController {
 
-    private final RoomService roomService;
+    private final MeetingRoomService meetingRoomService;
     private final AmenityService amenityService;
 
-    public AdminController(RoomService roomService, AmenityService amenityService) {
-        this.roomService = roomService;
+    public AdminController(MeetingRoomService meetingRoomService, AmenityService amenityService) {
+        this.meetingRoomService = meetingRoomService;
         this.amenityService = amenityService;
     }
 
-    // Meeting Room Endpoints
-
     @PostMapping("/createRoom")
     public ResponseEntity<MeetingRoomDto> createRoom(@RequestBody CreateMeetingRoomDto createRoomDto) {
-        MeetingRoomDto room = roomService.createRoom(createRoomDto);
+        MeetingRoomDto room = meetingRoomService.createRoom(createRoomDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(room);
     }
 
     @PutMapping("/updateRoom")
     public ResponseEntity<MeetingRoomDto> updateRoom(@RequestBody UpdateMeetingRoomDto updateRoomDto) {
-        MeetingRoomDto room = roomService.updateRoom(updateRoomDto);
+        MeetingRoomDto room = meetingRoomService.updateRoom(updateRoomDto);
         return ResponseEntity.ok(room);
     }
 
     @GetMapping("/getRoomById/{roomId}")
     public ResponseEntity<MeetingRoomDto> getRoomById(@PathVariable UUID roomId) {
-        MeetingRoomDto room = roomService.getRoomById(roomId);
+        MeetingRoomDto room = meetingRoomService.getRoomById(roomId);
         return ResponseEntity.ok(room);
     }
 
     @GetMapping("/getAllRoom")
     public ResponseEntity<List<MeetingRoomDto>> getAllRooms() {
-        List<MeetingRoomDto> rooms = roomService.getAllRooms();
+        List<MeetingRoomDto> rooms = meetingRoomService.getAllRooms();
         return ResponseEntity.ok(rooms);
     }
 
     @DeleteMapping("/rooms/{roomId}")
     public ResponseEntity<String> deleteRoom(@PathVariable UUID roomId) {
-        roomService.deleteRoom(roomId);
+        meetingRoomService.deleteRoom(roomId);
         return ResponseEntity.ok("Room deleted successfully");
     }
 

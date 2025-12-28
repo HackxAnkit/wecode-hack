@@ -10,7 +10,7 @@ import com.wecode.bookit.exceptions.RoomNotFound;
 import com.wecode.bookit.repository.AmenityRepository;
 import com.wecode.bookit.repository.MeetingRoomRepository;
 import com.wecode.bookit.repository.SeatingCapacityCreditsRepository;
-import com.wecode.bookit.services.RoomService;
+import com.wecode.bookit.services.MeetingRoomService;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -21,25 +21,26 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-public class RoomServiceImpl implements RoomService {
+public class MeetingRoomServiceImpl implements MeetingRoomService {
 
     private final MeetingRoomRepository meetingRoomRepository;
     private final AmenityRepository amenityRepository;
     private final SeatingCapacityCreditsRepository seatingCapacityCreditsRepository;
 
-    public RoomServiceImpl(MeetingRoomRepository meetingRoomRepository,
-                         AmenityRepository amenityRepository,
-                         SeatingCapacityCreditsRepository seatingCapacityCreditsRepository) {
+    public MeetingRoomServiceImpl(MeetingRoomRepository meetingRoomRepository,
+                                  AmenityRepository amenityRepository,
+                                  SeatingCapacityCreditsRepository seatingCapacityCreditsRepository) {
         this.meetingRoomRepository = meetingRoomRepository;
         this.amenityRepository = amenityRepository;
         this.seatingCapacityCreditsRepository = seatingCapacityCreditsRepository;
     }
 
-
-    // need to fix this get the ameties by name only
+    /**
+     * Create a new meeting room
+     */
     @Override
     public MeetingRoomDto createRoom(CreateMeetingRoomDto createRoomDto) {
-        // Validate room name uniqueness
+
         if (meetingRoomRepository.existsByRoomName(createRoomDto.getRoomName())) {
             throw new RuntimeException("Room name already exists");
         }
@@ -60,10 +61,8 @@ public class RoomServiceImpl implements RoomService {
             }
         }
 
-        // Calculate total room cost: seating credits + amenity credits + per hour cost
         Integer totalRoomCost = seatingCapacityCredits + amenityCredits + createRoomDto.getPerHourCost();
 
-        // Create and save room
         MeetingRoom room = new MeetingRoom();
         room.setRoomId(UUID.randomUUID());
         room.setRoomName(createRoomDto.getRoomName());

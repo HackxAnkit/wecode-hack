@@ -7,7 +7,7 @@ import com.wecode.bookit.dto.UpdateMeetingRoomDto;
 import java.util.List;
 import java.util.UUID;
 
-public interface RoomService {
+public interface MeetingRoomService {
     MeetingRoomDto createRoom(CreateMeetingRoomDto createRoomDto);
     MeetingRoomDto updateRoom(UpdateMeetingRoomDto updateRoomDto);
     MeetingRoomDto getRoomById(UUID roomId);
