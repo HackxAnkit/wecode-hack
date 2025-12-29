@@ -13,19 +13,17 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BookingDto {
+public class BookingResponseDto {
     private UUID bookingId;
     private UUID roomId;
-    private UUID userId;
+    private String roomName;
     private String meetingTitle;
     private LocalDate meetingDate;
     private String meetingType;
-    private String roomName;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Integer totalCredits;
     private String status;
     private LocalDateTime createdAt;
-    private LocalDateTime cancelledAt;
 }
 
