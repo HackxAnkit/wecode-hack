@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -22,20 +24,23 @@ public class Booking {
     @Column(name = "booking_id")
     private UUID bookingId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id", nullable = false)
-    private MeetingRoom room;
+    @Column(name = "room_id", nullable = false)
+    private UUID roomId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name = "user_id", nullable = false)
+    private UUID userId;
 
-    @Column(name = "meeting_title", nullable = false, length = 200)
+    @Column(name = "meeting_title", nullable = false)
     private String meetingTitle;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "meeting_type", nullable = false, length = 20)
-    private MeetingType meetingType;
+    @Column(name = "meeting_date", nullable = false)
+    private LocalDate meetingDate;
+
+    @Column(name = "meeting_type", nullable = false)
+    private String meetingType;
+
+    @Column(name = "room_name", nullable = false)
+    private String roomName;
 
     @Column(name = "start_time", nullable = false)
     private LocalDateTime startTime;
@@ -46,9 +51,17 @@ public class Booking {
     @Column(name = "total_credits", nullable = false)
     private Integer totalCredits;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
-    private BookingStatus status = BookingStatus.ACTIVE;
+    @Column(name = "check_in_status")
+    private String checkInStatus = "PENDING";
+
+    @Column(name = "penalty_applied")
+    private Boolean penaltyApplied = false;
+
+    @Column(name = "penalty_amount")
+    private Integer penaltyAmount = 0;
+
+    @Column(name = "status")
+    private String status = "ACTIVE";
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -56,12 +69,6 @@ public class Booking {
 
     @Column(name = "cancelled_at")
     private LocalDateTime cancelledAt;
-
-    public enum MeetingType {
-        CLASSROOM, ONLINE, CONFERENCE, BUSINESS
-    }
-
-    public enum BookingStatus {
-        ACTIVE, CANCELLED
-    }
 }
+
+
