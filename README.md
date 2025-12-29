@@ -113,7 +113,8 @@ The system automatically enforces these rules during booking.
   - Read-only calendar/grid view of current and upcoming bookings
 
 ---
-##WORKFLOW STRUCTURE
+##  **WORKFLOW STRUCTURE**
+
 ```[ HOMEPAGE ] 
       |
       |---> (Describes App Features & Details)
