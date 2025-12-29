@@ -116,7 +116,7 @@ The system automatically enforces these rules during booking.
 
 ## 👨‍💻 Implementation Strategy & Team Distribution
 
-**Team Name: 404 Not Found**
+
 
 ### Sub-Team A: UI/UX  
 **Members:** Amanpreet, Rishita  
