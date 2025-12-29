@@ -1,11 +1,14 @@
-# Automated Meeting Room Booking System
-
-## Executive Summary
-The **Automated Meeting Room Booking System** is a centralized enterprise-grade platform designed to optimize office meeting room utilization. It introduces a **credit-based economy** combined with **Role-Based Access Control (RBAC)** to ensure fair usage, eliminate scheduling conflicts, and enforce accountability in resource consumption through an automated and professional workflow.
+# 🏢 Automated Meeting Room Booking System  
+**Team Name: 404 Not Found**
 
 ---
 
-## Problem Statement & Scope
+## 📌 Executive Summary
+The **Automated Meeting Room Booking System**, developed by **Team 404 Not Found**, is a centralized enterprise-grade platform designed to optimize office meeting room utilization. It introduces a **credit-based booking economy** combined with **Role-Based Access Control (RBAC)** to ensure fair usage, eliminate scheduling conflicts, and enforce accountability through an automated and professional workflow.
+
+---
+
+## 🎯 Problem Statement & Scope
 
 ### Current Challenges
 - **Manual Overhead:** Manual scheduling results in double bookings and operational inefficiencies.
@@ -20,7 +23,7 @@ The system delivers an end-to-end digital solution to:
 
 ---
 
-## User Roles & Authorization Model
+## 👥 User Roles & Authorization Model
 
 The system enforces a **Layered Authorization (RBAC)** model.
 
@@ -32,47 +35,48 @@ The system enforces a **Layered Authorization (RBAC)** model.
 
 ---
 
-## Credit Economy Engine
+## 💳 Credit Economy Engine
 
 ### Pricing Logic
 The system follows a **utility-based pricing model**.
 
-**Formula:**
-
+---
 
 ### Credit Cost Sheet
 
-#### Room Size
+#### 🪑 Room Size
 | Capacity       | Credits / Hr |
 |--------------- |-------------|
 | ≤ 5 Seats      | 0           |
 | 6–10 Seats     | 10          |
 | > 10 Seats     | 20          |
 
-#### Amenities
+#### ⚙️ Amenities
 | Amenity                          | Credits / Hr |
 |---------------------------------|-------------|
 | Wi-Fi / TV / Coffee Machine     | 10 each     |
 | Conference Call Facility        | 15          |
 | Projector / Whiteboard / Water  | 5 each      |
 
+---
+
 ### Example Booking
 **Meeting:** Team Training  
 **Room Size:** 12 Seats → 20 credits  
-**Amenities:** Projector (5) + Wi-Fi (10)  
+**Amenities:** Projector (5) + Wi-Fi (10)
 
 **Total Cost:** `35 Credits / Hour`
 
 ---
 
-## Credit Wallet Rules
+## 🔁 Credit Wallet Rules
 - **Manager Wallet:** 2000 credits allocated by default.
 - **Automated Reset:** All manager wallets reset to 2000 credits every **Monday at 6:00 AM** via Cron Job.
 - **Restrictions:** Admins and Members have 0 credits and cannot initiate bookings.
 
 ---
 
-## Mandatory Amenities by Meeting Type
+## 📋 Mandatory Amenities by Meeting Type
 
 | Meeting Type        | Mandatory Amenities              |
 |-------------------- |---------------------------------|
@@ -85,7 +89,7 @@ The system automatically enforces these rules during booking.
 
 ---
 
-## Technical Architecture
+## 🏗️ Technical Architecture
 
 ### Technology Stack
 - **Frontend:** HTML, CSS, JavaScript (Component-based UI)
@@ -94,7 +98,7 @@ The system automatically enforces these rules during booking.
 
 ---
 
-## UI/UX Workflow
+## 🖥️ UI/UX Workflow
 
 ### Pages & Dashboards
 - **Home Page:** Login and navigation hub.
@@ -110,35 +114,35 @@ The system automatically enforces these rules during booking.
 
 ---
 
-## Implementation Strategy & Team Distribution
+## 👨‍💻 Implementation Strategy & Team Distribution
 
-### Sub-Team A: UI/UX
+**Team Name: 404 Not Found**
+
+### Sub-Team A: UI/UX  
 **Members:** Amanpreet, Rishita  
-- Designing responsive layouts using CSS frameworks
-- Creating dummy-data UI prototypes for early validation
-- Maintaining technical documentation
+- Designing responsive layouts using CSS frameworks  
+- Creating dummy-data UI prototypes for early validation  
+- Maintaining technical documentation  
 
-### Sub-Team B: Backend & Database
+### Sub-Team B: Backend & Database  
 **Members:** Ankit, Pulkit  
-- Developing RESTful APIs and business logic
-- Implementing database locking to avoid race conditions
-- Scheduling the weekly credit reset Cron Job
-- Ensuring 100% test coverage using JUnit
+- Developing RESTful APIs and business logic  
+- Implementing database locking to avoid race conditions  
+- Scheduling the weekly credit reset Cron Job  
+- Ensuring reliable testing using JUnit  
 
 ---
 
-## Round 2 Roadmap (Future Enhancements)
+## 🚀 Round 2 Roadmap (Future Enhancements)
 
 - **Intelligent Queueing:**  
-  5-minute temporary holds for users next in line during peak booking hours.
+  Temporary booking holds during peak hours.
 - **Alert Reporting:**  
-  Real-time email or dashboard alerts for unauthorized access attempts.
+  Real-time alerts for unauthorized access attempts.
 - **Advanced Logging:**  
-  Dynamic switching of logging frameworks for production-grade monitoring.
+  Production-grade monitoring and diagnostics.
 
 ---
 
-## License
+## 📄 License
 This project is intended for academic and internal enterprise use. Licensing can be defined based on organizational requirements.
-
----
