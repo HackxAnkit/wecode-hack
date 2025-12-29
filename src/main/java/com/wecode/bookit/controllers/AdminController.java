@@ -30,8 +30,18 @@ public class AdminController {
 
     @PostMapping("/createRoom")
     public ResponseEntity<MeetingRoomDto> createRoom(@RequestBody CreateMeetingRoomDto createRoomDto) {
-        MeetingRoomDto room = meetingRoomService.createRoom(createRoomDto);
+        try{
+            MeetingRoomDto room = meetingRoomService.createRoom(createRoomDto);
+            room.setStatusCode(HttpStatus.CREATED.value());
+            room.setMessage("Room created successfully");
         return ResponseEntity.status(HttpStatus.CREATED).body(room);
+        }
+        catch (Exception e){
+        MeetingRoomDto errorResponse = new MeetingRoomDto();
+        errorResponse.setStatusCode(HttpStatus.BAD_REQUEST.value());
+        errorResponse.setMessage(e.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
     }
 
     @PutMapping("/updateRoom")

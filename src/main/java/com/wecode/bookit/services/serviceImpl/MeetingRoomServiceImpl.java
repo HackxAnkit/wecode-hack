@@ -6,6 +6,7 @@ import com.wecode.bookit.dto.UpdateMeetingRoomDto;
 import com.wecode.bookit.entity.Amenity;
 import com.wecode.bookit.entity.MeetingRoom;
 import com.wecode.bookit.entity.SeatingCapacityCredits;
+import com.wecode.bookit.exceptions.RoomAlreadyExistsException;
 import com.wecode.bookit.exceptions.RoomNotFound;
 import com.wecode.bookit.repository.AmenityRepository;
 import com.wecode.bookit.repository.MeetingRoomRepository;
@@ -42,7 +43,7 @@ public class MeetingRoomServiceImpl implements MeetingRoomService {
     public MeetingRoomDto createRoom(CreateMeetingRoomDto createRoomDto) {
 
         if (meetingRoomRepository.existsByRoomName(createRoomDto.getRoomName())) {
-            throw new RuntimeException("Room name already exists");
+            throw new RoomAlreadyExistsException("Room with name '" + createRoomDto.getRoomName() + "' already exists");
         }
 
         Integer seatingCapacityCredits = getSeatingCapacityCredits(createRoomDto.getSeatingCapacity());
