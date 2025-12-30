@@ -182,7 +182,6 @@ The system automatically enforces these rules during booking.
 - **Automated Bot:**  
   Triggered immediately after a successful room booking to handle notifications or logging.
 
----
 
 ### 2. Work Contributions
 
@@ -206,6 +205,8 @@ The system automatically enforces these rules during booking.
   Comprehensive project documentation.
 
 ---
+## 📄 Project Documentation
+👉 **[Click here to view the complete project documentation](https://your-doc-link-here)**
 
 
 
