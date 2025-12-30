@@ -7,6 +7,7 @@ import com.wecode.bookit.entity.Amenity;
 import com.wecode.bookit.entity.MeetingRoom;
 import com.wecode.bookit.entity.SeatingCapacityCredits;
 import com.wecode.bookit.exceptions.RoomAlreadyExistsException;
+import com.wecode.bookit.exceptions. RoomIdDoesNotExist;
 import com.wecode.bookit.exceptions.RoomNotFound;
 import com.wecode.bookit.repository.AmenityRepository;
 import com.wecode.bookit.repository.MeetingRoomRepository;
@@ -83,7 +84,6 @@ public class MeetingRoomServiceImpl implements MeetingRoomService {
 
         MeetingRoom room = meetingRoomRepository.findByRoomName(updateRoomDto.getRoomName())
                 .orElseThrow(() -> new RoomNotFound("Room not found"));
-
 
         if (updateRoomDto.getRoomName() != null && !updateRoomDto.getRoomName().isEmpty()
                 && !updateRoomDto.getRoomName().equals(room.getRoomName())) {

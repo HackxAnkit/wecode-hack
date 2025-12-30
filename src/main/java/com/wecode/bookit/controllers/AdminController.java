@@ -46,8 +46,18 @@ public class AdminController {
 
     @PutMapping("/updateRoom")
     public ResponseEntity<MeetingRoomDto> updateRoom(@RequestBody UpdateMeetingRoomDto updateRoomDto) {
-        MeetingRoomDto room = meetingRoomService.updateRoom(updateRoomDto);
+        try{
+            MeetingRoomDto room = meetingRoomService.updateRoom(updateRoomDto);
+            room.setStatusCode(HttpStatus.CREATED.value());
+            room.setMessage("Room updated successfully");
         return ResponseEntity.ok(room);
+        }
+        catch (Exception e){
+        MeetingRoomDto errorResponse = new MeetingRoomDto();
+        errorResponse.setStatusCode(HttpStatus.BAD_REQUEST.value());
+        errorResponse.setMessage(e.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
     }
 
     @GetMapping("/getRoomById/{roomId}")
