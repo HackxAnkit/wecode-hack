@@ -157,14 +157,53 @@ The system automatically enforces these rules during booking.
 
 ---
 
-## 🚀 Round 2 Roadmap (Future Enhancements)
+## 📌 Project Plan: Round 2
 
-- **Intelligent Queueing:**  
-  Temporary booking holds during peak hours.
-- **Alert Reporting:**  
-  Real-time alerts for unauthorized access attempts.
-- **Advanced Logging:**  
-  Production-grade monitoring and diagnostics.
+### 1. Core Technical Components
+
+- **Rate Limiting:**  
+  Implemented to prevent API abuse and ensure overall system stability.
+
+- **Security & Authentication:**  
+  JWT (JSON Web Tokens) setup with secured endpoints using `@PreAuthorize` rules.
+
+- **Database Integrity:**  
+  Concurrency control and database transactions to prevent race conditions during room booking.
+
+- **Infrastructure:**  
+  Seamless connectivity between **Frontend ↔ Backend ↔ Database**.
+
+- **5-Minute Timer:**  
+  Redis cache used to store temporary **Reservation Keys** with a **300-second TTL (Time-to-Live)**.
+
+- **Ghosting Penalty:**  
+  Logic to deduct **50 extra credits** as a fine if a manager fails to check in after booking.
+
+- **Automated Bot:**  
+  Triggered immediately after a successful room booking to handle notifications or logging.
+
+---
+
+### 2. Work Contributions
+
+#### Development Pipeline
+
+- **UI/UX:**  
+  UI design and UI code implementation.
+
+- **Connectivity Testing:**  
+  - UI → Backend connectivity testing  
+  - Backend → Database connectivity testing
+
+- **Full Stack Integration:**  
+  UI (API) → Backend (Endpoints) → Cloud Database
+
+- **Logic & Security:**  
+  - Authentication & Authorization  
+  - Transaction management to prevent race conditions
+
+- **Finalization:**  
+  Comprehensive project documentation.
 
 ---
 
