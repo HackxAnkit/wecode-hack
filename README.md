@@ -40,7 +40,7 @@ The system enforces a **Layered Authorization (RBAC)** model.
 - **Restrictions:** Admins and Members have 0 credits and cannot initiate bookings.
 
 
-## Amenities by Meeting Type
+## Amenities by Meeting Type 
 
 | Meeting Type        | Mandatory Amenities              |
 |-------------------- |---------------------------------|
@@ -145,6 +145,15 @@ The system enforces a **Layered Authorization (RBAC)** model.
 
 - **Finalization:**  
   Comprehensive project documentation.
+
+## Team Members
+
+| Name        | Mandatory Amenities              |
+|-------------------- |---------------------------------|
+| Rishita Naniwal  | UI Desigining, Frontend, Documentation           |
+| Aman Preet Singh     | UI Desigining, Frontend, Documentation                 |
+| Ankit Bhandari     | Backend & Database        |
+| Pulkit    | Backend & database                       |
 
 ## Project Documentation
 👉 **[Click here to view the complete project documentation](https://docs.google.com/document/d/15EL4luxd8VmWfRGuHchPDdozEf4jHgQToxO-ctwLBG4/edit?tab=t.7u45fnw8850e#heading=h.gd8q705vbsli)**
