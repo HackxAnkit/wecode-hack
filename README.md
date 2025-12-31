@@ -79,7 +79,7 @@ The system enforces a **Layered Authorization (RBAC)** model.
   - Read-only calendar/grid view of current and upcoming bookings
 
 
-##  **WORKFLOW STRUCTURE**
+##  **System Interactions**
 
 ![Workflow](images/workflow.png)
 
