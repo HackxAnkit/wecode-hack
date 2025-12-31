@@ -34,14 +34,11 @@ The system enforces a **Layered Authorization (RBAC)** model.
 | Member  | View-only access to room schedules and booking status |
 
 
----
-
 ## Credits Allotment
 - **Manager Wallet:** 2000 credits allocated by default.
 - **Automated Reset:** All manager wallets reset to 2000 credits every **Monday at 6:00 AM** via Cron Job.
 - **Restrictions:** Admins and Members have 0 credits and cannot initiate bookings.
 
----
 
 ## Amenities by Meeting Type
 
@@ -85,7 +82,7 @@ The system enforces a **Layered Authorization (RBAC)** model.
 ##  **WORKFLOW STRUCTURE**
 
 ```
-
+![Workflow](images/workflow.png)
 ```
 ## Implementation Strategy & Team Distribution
 
