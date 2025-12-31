@@ -10,7 +10,7 @@ The **Automated Meeting Room Booking System**, developed by **Team 404 Not Found
 
 - **Admin Module**:  
   - Create and configure meeting rooms.
-  - Reset manager credits on a weekly basis.
+  - Manage amenities.
   
 - **Manager Module**:  
   - Book available meeting rooms based on real-time availability.
@@ -24,7 +24,7 @@ The **Automated Meeting Room Booking System**, developed by **Team 404 Not Found
 ## Technology Stack
 
 - **Frontend**: HTML, CSS, JavaScript (Implemented with dummy data for demonstration)
-- **Backend**: Java, MySQL (For database management and backend logic)
+- **Backend**: Java&springboot, PostgreSQL (For database management and backend logic)
   
 ## Documentation
 
@@ -42,7 +42,6 @@ The **Automated Meeting Room Booking System**, developed by **Team 404 Not Found
 
 3. Highlights Page:
    
-![Highlights](images/StartingPage.png)
 ![Highlights](images/home.png)
 
 5. Admin Page:
