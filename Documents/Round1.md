@@ -1,3 +1,5 @@
+---
+
 # Project Plan – Round 1
 
 ---
@@ -14,7 +16,6 @@ Define the core challenge, user pain points, and the specific solution the proje
 - **Data Flow Diagram (DFD)**  
   Tracking how data moves from the user through the system.
 
----
 
 ## 2. Database & Architecture
 
@@ -24,13 +25,11 @@ Define the core challenge, user pain points, and the specific solution the proje
 
 ### Table Relations
 - Defining one-to-many and many-to-many relationships.
-- Core interaction logic between entities.
+- Core interaction logic between system entities.
 
 ### Cloud Integration
 - Setting up the Cloud Database connection.
 - Executing DDL scripts for all table creations.
-
----
 
 ## 3. Design & Development (Skeleton Phase)
 
@@ -48,11 +47,7 @@ Define the core challenge, user pain points, and the specific solution the proje
 - Class UML diagrams to map object-oriented structure.
 - Base code skeleton with initial configurations.
 
----
-
 ## Work Contributions
-
----
 
 ## Deliverables
 
@@ -74,19 +69,23 @@ Define the core challenge, user pain points, and the specific solution the proje
   - Layered architecture implementation
 
 - **Documentation**
-  - Database documentation
-  - API endpoint documentation
-  - UI component documentation
+  - Comprehensive guides for:
+    - Database
+    - API endpoints
+    - UI components
 
----
 
 ## Team Assignments
 
 | Name     | Primary Responsibilities        |
 |----------|---------------------------------|
 | Rishita  | Frontend, Documentation         |
-| Aman     | Frontend, UI/UX                 |
-| Ankit    | Database, Backend               |
-| Pulkit   | Database, Backend               |
+| Aman    | Frontend, UI/UX                 |
+| Ankit   | Database, Backend               |
+| Pulkit  | Database, Backend               |
+
+## License
+
+© 2025 Bookit.
 
 ---
