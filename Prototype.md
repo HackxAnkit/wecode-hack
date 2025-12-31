@@ -61,13 +61,23 @@ The **Automated Meeting Room Booking System**, developed by **Team 404 Not Found
     
 ![Noti](images/Screenshot%202025-12-31%20at%201.21.38 AM.png)
 
+7. Backend:
+    
+![](images/backend1.png)
 
-## Credits
+![](images/backend2.png)
+    
+![](images/backend3.png)
 
-- **Developed by**: Rishita, Ankit, Aman , Pulkit
-- **Design**: Rishita, Aman
-- **Testing**: Ankit, Pulkit
+10. Cloud DB:
+    
+![](images/db1.png)
+    
+![](images/db2.png)
+    
+![](images/db3.png)
+
+- **Developed by**: Rishita Naniwal, Ankit Bhandari, Aman Preet Singh, Pulkit
 
 ## License
-
 © 2025 Bookit.
