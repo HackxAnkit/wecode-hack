@@ -49,7 +49,6 @@ Stores system users with credentials, roles, and credits.
 - Members cannot book rooms
 - Admins manage rooms and amenities
 
----
 
 ##  MEETING_ROOMS TABLE
 
@@ -70,7 +69,6 @@ Stores meeting room configuration and cost parameters.
 | created_at       | TIMESTAMP   | Created time |
 | updated_at       | TIMESTAMP   | Updated time |
 
----
 
 ##  AMENITIES TABLE
 
@@ -96,8 +94,6 @@ Lists all amenities with their credit costs.
 | WHITEBOARD | 5 |
 | TV | 10 |
 
----
-
 ##  ROOM_AMENITIES TABLE
 
 ### Purpose
@@ -114,7 +110,6 @@ Defines many-to-many relationship between rooms and amenities.
 - Cascade delete enabled
 - Allows flexible amenity configuration
 
----
 
 ##  BOOKINGS TABLE
 
@@ -146,8 +141,6 @@ Manages meeting reservations, credits, and penalties.
 - Credits cannot be negative
 - No overlapping schedules
 
----
-
 ##  ROOM_SCHEDULE TABLE
 
 ### Purpose
@@ -168,7 +161,6 @@ Tracks real-time room occupancy.
 | status       | VARCHAR(20)| ACTIVE / CANCELLED |
 | created_at   | TIMESTAMP  | Created time |
 
----
 
 ##  MANAGER_CREDIT_SUMMARY TABLE
 
@@ -188,7 +180,6 @@ Tracks manager credit usage and penalties.
 | last_reset_at| TIMESTAMP  | Last reset |
 | updated_at   | TIMESTAMP  | Updated time |
 
----
 
 ##  SEATING_CAPACITY_CREDITS TABLE
 
@@ -200,7 +191,3 @@ Defines credit cost based on seating capacity.
 | 0 | 5 | 0 |
 | 6 | 10 | 10 |
 | 11 | 1000 | 20 |
-
----
-
-## 🔄 Data Flow
