@@ -1,4 +1,4 @@
-# 🏢 Automated Meeting Room Booking System  
+# BOOKIT Automated Meeting Room Booking System  
 **Team Name: 404 Not Found**
 
 
@@ -152,8 +152,8 @@ The system enforces a **Layered Authorization (RBAC)** model.
 |-------------------- |---------------------------------|
 | Rishita Naniwal  | UI Desigining, Frontend, Documentation           |
 | Aman Preet Singh     | UI Desigining, Frontend, Documentation                 |
-| Ankit Bhandari     | Backend & Database        |
-| Pulkit    | Backend & database                       |
+| Ankit Bhandari     | Backend + API & Database        |
+| Pulkit    | Backend + API & database                       |
 
 ## Project Documentation
 👉 **[Click here to view the complete project documentation](https://docs.google.com/document/d/15EL4luxd8VmWfRGuHchPDdozEf4jHgQToxO-ctwLBG4/edit?tab=t.7u45fnw8850e#heading=h.gd8q705vbsli)**
