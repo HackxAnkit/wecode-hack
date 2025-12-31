@@ -41,15 +41,6 @@ The system enforces a **Layered Authorization (RBAC)** model.
 - **Restrictions:** Admins and Members have 0 credits and cannot initiate bookings.
 
 
-## Amenities by Meeting Type 
-
-| Meeting Type        | Mandatory Amenities              |
-|-------------------- |---------------------------------|
-| Classroom Training  | Whiteboard, Projector           |
-| Online Training     | Wi-Fi, Projector                |
-| Conference Call     | Conference Call Facility        |
-| Business Meeting    | Projector                       |
-
 ## Data Flow Diagram
 
 ![](images/DFD.png)
@@ -104,33 +95,7 @@ The system enforces a **Layered Authorization (RBAC)** model.
 - Ensuring reliable testing using JUnit  
 
 
-## Project Plan: Round 2
-
-### 1. Core Technical Components
-
-- **Rate Limiting:**  
-  Implemented to prevent API abuse and ensure overall system stability.
-
-- **Security & Authentication:**  
-  JWT (JSON Web Tokens) setup with secured endpoints using `@PreAuthorize` rules.
-
-- **Database Integrity:**  
-  Concurrency control and database transactions to prevent race conditions during room booking.
-
-- **Infrastructure:**  
-  Seamless connectivity between **Frontend ↔ Backend ↔ Database**.
-
-- **5-Minute Timer:**  
-  Redis cache used to store temporary **Reservation Keys** with a **300-second TTL (Time-to-Live)**.
-
-- **Ghosting Penalty:**  
-  Logic to deduct **50 extra credits** as a fine if a manager fails to check in after booking.
-
-- **Automated Bot:**  
-  Triggered immediately after a successful room booking to handle notifications or logging.
-
-
-### 2. Work Contributions
+### Work Contributions
 
 #### Development Pipeline
 
