@@ -115,14 +115,26 @@ public class AdminController {
 
     @PutMapping("/updateAmenitie")
     public ResponseEntity<Amenity> updateAmenity(@RequestBody UpdateAmenityDto updateAmenityDto) {
-        Amenity amenity = amenityService.updateAmenity(updateAmenityDto);
-        return ResponseEntity.ok(amenity);
+        try {
+            Amenity amenity = amenityService.updateAmenity(updateAmenityDto);
+            return ResponseEntity.ok(amenity);
+        }
+        catch(Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.NOT_MODIFIED).build();
+        }
     }
 
     @GetMapping("/getAmenitieById/{amenityId}")
     public ResponseEntity<Amenity> getAmenityById(@PathVariable UUID amenityId) {
-        Amenity amenity = amenityService.getAmenityById(amenityId);
-        return ResponseEntity.ok(amenity);
+        try {
+            Amenity amenity = amenityService.getAmenityById(amenityId);
+            return ResponseEntity.ok(amenity);
+        }
+        catch(Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @GetMapping("/getAllAmenities")
