@@ -139,13 +139,21 @@ public class AdminController {
 
     @GetMapping("/getAllAmenities")
     public ResponseEntity<List<Amenity>> getAllAmenities() {
-        List<Amenity> amenities = amenityService.getAllAmenities();
-        return ResponseEntity.ok(amenities);
+        try {
+            List<Amenity> amenities = amenityService.getAllAmenities();
+            return ResponseEntity.ok(amenities);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @DeleteMapping("/amenities/{amenityId}")
     public ResponseEntity<String> deleteAmenity(@PathVariable UUID amenityId) {
-        amenityService.deleteAmenity(amenityId);
-        return ResponseEntity.ok("Amenity deleted successfully");
+        try {
+            amenityService.deleteAmenity(amenityId);
+            return ResponseEntity.ok("Amenity deleted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 }
