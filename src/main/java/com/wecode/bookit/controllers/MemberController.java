@@ -5,13 +5,11 @@ import com.wecode.bookit.entity.Role;
 import com.wecode.bookit.entity.User;
 import com.wecode.bookit.repository.UserRepository;
 import com.wecode.bookit.services.BookingService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/auth/member")
