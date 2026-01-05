@@ -24,7 +24,7 @@ public class RateLimitingConfig {
      */
     @Bean
     public Bucket createBucket() {
-        Bandwidth limit = Bandwidth.classic(10, Refill.intervally(10, Duration.ofHours(1)));
+        Bandwidth limit = Bandwidth.classic(50, Refill.intervally(50, Duration.ofHours(1)));
         return Bucket4j.builder()
                 .addLimit(limit)
                 .build();

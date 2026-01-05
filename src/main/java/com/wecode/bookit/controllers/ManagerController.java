@@ -35,27 +35,25 @@ public class ManagerController {
     private void verifyManagerRole(UUID userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
-
         if (user.getRole() != Role.MANAGER) {
             throw new RuntimeException("Access denied. Only managers can access this endpoint");
         }
     }
 
     @GetMapping("/viewAvailableMeetingRoom")
-    public ResponseEntity<List<MeetingRoomDto>> viewAvailableMeetingRooms(@RequestHeader("userId") UUID userId) {
+    public ResponseEntity<List<MeetingRoomDto>> viewAvailableMeetingRooms(@RequestParam UUID userId) {
         verifyManagerRole(userId);
         List<MeetingRoomDto> rooms = bookingService.getAvailableMeetingRooms();
         return ResponseEntity.ok(rooms);
     }
 
     @PostMapping("/bookRoom")
-    public ResponseEntity<BookingResponseDto> bookRoom(
-            @RequestHeader("userId") UUID managerId,
-            @RequestBody BookingRequestDto bookingRequestDto) {
-        verifyManagerRole(managerId);
-
+    public ResponseEntity<BookingResponseDto> bookRoom(@RequestBody BookingRequestDto bookingRequestDto) {
+        verifyManagerRole(bookingRequestDto.getUserId());
         try {
-            BookingResponseDto booking = bookingService.bookRoom(managerId, bookingRequestDto);
+            BookingResponseDto booking = bookingService.bookRoom(bookingRequestDto.getUserId(), bookingRequestDto);
+            booking.setStatusCode(HttpStatus.CREATED.value());
+            booking.setMessage("Room booked successfully by manager: " + bookingRequestDto.getUserId());
             return ResponseEntity.status(HttpStatus.CREATED).body(booking);
         } catch (RuntimeException e) {
             throw new RuntimeException(e.getMessage());
@@ -63,31 +61,30 @@ public class ManagerController {
     }
 
     @GetMapping("/myBookings")
-    public ResponseEntity<List<BookingResponseDto>> getMyBookings(@RequestHeader("userId") UUID managerId) {
-        verifyManagerRole(managerId);
-        List<BookingResponseDto> bookings = bookingService.getBookingsByManager(managerId);
+    public ResponseEntity<List<BookingResponseDto>> getMyBookings(@RequestParam UUID userId) {
+        verifyManagerRole(userId);
+        List<BookingResponseDto> bookings = bookingService.getBookingsByManager(userId);
         return ResponseEntity.ok(bookings);
     }
 
     @GetMapping("/booking/{bookingId}")
     public ResponseEntity<BookingResponseDto> getBookingById(
-            @RequestHeader("userId") UUID managerId,
+            @RequestParam UUID userId,
             @PathVariable UUID bookingId) {
-        verifyManagerRole(managerId);
+        verifyManagerRole(userId);
         BookingResponseDto booking = bookingService.getBookingById(bookingId);
         return ResponseEntity.ok(booking);
     }
 
     @DeleteMapping("/booking/{bookingId}")
     public ResponseEntity<Map<String, String>> cancelBooking(
-            @RequestHeader("userId") UUID managerId,
+            @RequestParam UUID userId,
             @PathVariable UUID bookingId) {
-        verifyManagerRole(managerId);
-
+        verifyManagerRole(userId);
         try {
             bookingService.cancelBooking(bookingId);
             Map<String, String> response = new HashMap<>();
-            response.put("message", "Booking cancelled successfully");
+            response.put("message", "Booking cancelled successfully by manager: " + userId);
             response.put("statusCode", String.valueOf(HttpStatus.OK.value()));
             return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
@@ -96,39 +93,35 @@ public class ManagerController {
     }
 
     @GetMapping("/profile")
-    public ResponseEntity<Map<String, Object>> getManagerProfile(@RequestHeader("userId") UUID managerId) {
-        verifyManagerRole(managerId);
-
-        User manager = userRepository.findById(managerId)
+    public ResponseEntity<Map<String, Object>> getManagerProfile(@RequestParam UUID userId) {
+        verifyManagerRole(userId);
+        User manager = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Manager not found"));
-
         Map<String, Object> profile = new HashMap<>();
         profile.put("userId", manager.getUserId());
         profile.put("name", manager.getName());
         profile.put("email", manager.getEmail());
         profile.put("role", manager.getRole().toString());
         profile.put("availableCredits", manager.getCredits());
-
         return ResponseEntity.ok(profile);
     }
 
     @GetMapping("/check-in/today-bookings")
     public ResponseEntity<List<TodayBookingsDto>> getTodayBookings(
-            @RequestHeader("userId") UUID managerId,
+            @RequestParam UUID userId,
             @RequestParam LocalDate date) {
-        verifyManagerRole(managerId);
-        List<TodayBookingsDto> bookings = bookingService.getTodayBookingsByManager(managerId, date);
+        verifyManagerRole(userId);
+        List<TodayBookingsDto> bookings = bookingService.getTodayBookingsByManager(userId, date);
         return ResponseEntity.ok(bookings);
     }
 
     @PostMapping("/check-in/{bookingId}")
     public ResponseEntity<CheckInResponseDto> checkIn(
-            @RequestHeader("userId") UUID managerId,
+            @RequestParam UUID userId,
             @PathVariable UUID bookingId) {
-        verifyManagerRole(managerId);
-
+        verifyManagerRole(userId);
         try {
-            CheckInResponseDto checkInResponse = bookingService.checkIn(managerId, bookingId);
+            CheckInResponseDto checkInResponse = bookingService.checkIn(userId, bookingId);
             return ResponseEntity.ok(checkInResponse);
         } catch (RuntimeException e) {
             throw new RuntimeException(e.getMessage());

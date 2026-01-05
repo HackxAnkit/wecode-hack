@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/auth/member")
@@ -26,15 +27,12 @@ public class MemberController {
 
     @GetMapping("/manager-meetings")
     public ResponseEntity<List<BookingResponseDto>> getMeetingsByManagerNameAndDate(
-            //@RequestHeader("userId") UUID memberId,
+//            @RequestParam UUID userId,
             @RequestParam String managerName,
             @RequestParam LocalDate meetingDate) {
 
-//        User member = userRepository.findById(memberId)
-//                .orElseThrow(() -> new RuntimeException("Member not found"));
-
 //        if (member.getRole() != Role.MEMBER) {
-//            throw new RuntimeException("Access denied");
+//            throw new RuntimeException("Access denied. Only members can access this endpoint");
 //        }
 
         User manager = userRepository.findByName(managerName)

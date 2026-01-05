@@ -42,7 +42,7 @@ public class SignUpController {
                     .statusCode(HttpStatus.CREATED.value())
                     .message("User registered successfully")
                     .name(user.getName())
-                    .role(user.getRole().toString())
+                    .role(user.getRole().toString()).userId(user.getUserId())
                     .build()
             );
         } catch (Exception e) {
@@ -74,7 +74,7 @@ public class SignUpController {
                     .statusCode(HttpStatus.OK.value())
                     .message("Login successful")
                     .email(user.getEmail())
-                    .role(user.getRole().toString())
+                    .role(user.getRole().toString()).userId(user.getUserId())
                     .build()
             );
         } catch (Exception e) {

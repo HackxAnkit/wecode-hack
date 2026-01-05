@@ -13,6 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class UpdateMeetingRoomDto {
+    private UUID userId;
     private UUID roomId;
     private String roomName;
     private String roomType;

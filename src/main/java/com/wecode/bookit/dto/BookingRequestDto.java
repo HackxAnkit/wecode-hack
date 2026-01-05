@@ -14,6 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class BookingRequestDto {
+    private UUID userId;
     private UUID roomId;
     private String meetingTitle;
     private LocalDate meetingDate;

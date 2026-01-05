@@ -6,12 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Set;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class CreateMeetingRoomDto {
+    private UUID userId;
     private String roomName;
     private String roomType;
     private Integer seatingCapacity;

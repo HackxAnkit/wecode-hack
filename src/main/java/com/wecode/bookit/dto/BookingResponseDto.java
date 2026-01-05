@@ -14,6 +14,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class BookingResponseDto {
+    private Integer statusCode;
+    private String message;
     private UUID bookingId;
     private UUID roomId;
     private String roomName;
